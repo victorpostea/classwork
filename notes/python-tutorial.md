@@ -2,7 +2,7 @@
 
 Corey Schafer has an excellent [python tutorial for beginners](https://www.youtube.com/playlist?list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7). Watch each video and take notes in this file.
 
-As you watch the video, it is recommended that you type out what Corey types. Even if you don't really understand what is happening.
+As you watch the video, have a code editor open and type out what Corey types. Run the code and modify the code. Do this even if you don't *yet* understand what is happening.
 
 The videos are on average 20 minutes long. Commit to watching one video after school for the first two weeks. **This tutorial is meant to serve as an introduction and to show you what is possible in a programming language**. Understanding and mastery come from daily practice.
 
