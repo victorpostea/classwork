@@ -10,7 +10,6 @@ The videos are on average 20 minutes long. Commit to watching one video after sc
 - [1: Install and Setup for Mac and Windows](#1--install-and-setup-for-mac-and-windows)
 - [2: Strings - Working with Textual Data](#2--strings---working-with-textual-data)
 - [3: Integers and Floats - Working with Numeric Data](#3--integers-and-floats---working-with-numeric-data)
-- [List the comparison operators:](#list-the-comparison-operators-)
 - [4: Lists, Tuples, and Sets](#4--lists--tuples--and-sets)
 - [5: Dictionaries - Working with Key-Value Pairs](#5--dictionaries---working-with-key-value-pairs)
 - [6: Conditionals and Booleans - If, Else, and Elif Statements](#6--conditionals-and-booleans---if--else--and-elif-statements)
@@ -51,12 +50,12 @@ The videos are on average 20 minutes long. Commit to watching one video after sc
 4. What does modulus (`%`) do?
 5. How does Python handle the order of operations?
 6. List the comparison operators:
-    -
-    -
-    -
-    -
-    -
-    -
+    - Equal to: `==`
+    - ...
+    - ...
+    - ...
+    - ...
+    - ...
 7. Is `"105"` an integer or a string? Explain.
 
 ## 4: Lists, Tuples, and Sets
