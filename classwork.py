@@ -145,4 +145,4 @@ def taxi_fare(km_travelled):
     meters_travelled = 1000 * km_travelled 
     cost_per_140_meters = 0.25
     base_fare = 4
-    return (base_fare + ((meters_travelled / 140) * 0.25))
+    return (base_fare + ((meters_travelled / 140) * cost_per_140_meters))
