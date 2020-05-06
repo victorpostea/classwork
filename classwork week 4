@@ -1,0 +1,77 @@
+#Guessing Game
+
+import random
+
+num = random.randrange(1,101)
+
+tries = 0
+
+while True:
+    guess = int(input("Guess a number from 1-100: "))
+    tries += 1
+
+    if guess == num:
+        print("WOW! You got it!")
+        if tries < 5:
+          print(f'Woah! You got that fast!')
+        else:
+          print(f'Good job! It took you {tries} tries.')
+        break
+    else: 
+        print("Dangit! You didn't guess right. Give it another shot!")
+        if num > guess:
+            print("The number is higher")
+        else:
+            print("The number is lower")
+    
+    print()
+    
+#Snakes & Ladders
+
+import random
+
+player1 = 0
+
+while True:
+    roll = random.randrange(1, 7)
+    print(f"You rolled a {roll}")
+
+    player1 += roll
+
+    # ladders
+    if player1 == 4:
+      print("You landed on a ladder. Go to space 14")
+      player1 = 14
+    if player1 == 16:
+      print("You landed on a ladder. Go to space 23")
+      player1 = 23
+    if player1 == 26:
+      print("You landed on a ladder. Go to space 38")
+      player1 == 38
+    if player1 == 43:
+      print("You landed on a ladder. Go to space 51")
+      player1 = 51
+    if player1 == 56:
+      print("You landed on a huge ladder! Go to space 84!")
+      player1 = 84
+    
+    # snakes
+    if player1 == 17:
+      print("You landed on a snake. Go back to space 7")
+      player1 = 7
+    if player1 == 25:
+      print("You landed on a snake. Go back to space 18")
+      player1 = 18
+    if player1 == 73:
+      print("You landed on a big snake. Go back to space 51!")
+      player1 = 51
+
+
+    if player1 == 100:
+      print("You win.")
+      break
+    elif player1 > 100:
+        player1 -= roll
+        print("You overshot 100. Try again.")
+    else:
+        print(f"You are now at {player1}")
