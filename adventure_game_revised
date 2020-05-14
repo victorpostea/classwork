@@ -1,0 +1,121 @@
+location = "room_1"
+
+
+while True:
+    if location == "room_1":
+        # display text
+        print("You wake up in a cold damp prison cell, you are unaware of your whereabouts.")
+        print("There is a keyring outside the cell dangling from the wall.")
+        print("There is a padlock locking the gate.")
+        print("There are bones on the ground in the cell")
+        print("There also seems to be an old almanac")
+        print("There appears to be another door blocking your exit outside the cell.")
+
+        # display menu
+        print()
+        print("Choose one of the following actions:")
+        print("[1] Try to open the gate")
+        print("[2] Inspect the bones")
+        print("[3] Check out the almanac")
+
+        # get choice
+        choice = int(input("Choice: "))
+         
+        # if statements for choice
+        if choice == 1:
+          location = "room_1"
+          print()
+          print("Seems as if the door is locked and requires a key, you don't find anything.")
+          print("Choose one of the following actions:")
+          print("[2] Inspect the bones")
+          print("[3] Check out the almanac")
+
+          choice2 = int(input("Choice: "))
+
+          if choice2 == 3:
+            print()
+            print("Today is marked as ""execution"" and looking at the clock you realize you have an hour left, other than that there's nothing intresting.")
+            print("You resort to the last option and inspect the bones.")
+            choice = 2
+          
+          if choice2 == 2:
+            print()
+            print("You realize there's a long narrow bone.")
+            print("Choose one of the following actions:")
+            print("[1] Try and grab the key off the keyring using the bone")
+            print("[2] Try and cut the gate with the bone")
+
+            choice3 = int(input("Choice: "))
+
+            if choice3 == 2:
+              location = "busted"
+            elif choice3 == 1:
+              print()
+              print("You grab the key and unlock the door you are now in the next room")
+              location = "room_2"
+
+        if choice == 2:
+          print()
+          print("You realize there's a long narrow bone.")
+          print("Choose one of the following actions:")
+          print("[1] Try and grab the key off the keyring using the bone")
+          print("[2] Try and cut the gate with the bone")
+
+          choice2 = int(input("Choice: "))
+
+          if choice2 == 2:
+            location = "busted"
+          elif choice2 == 1:
+            print()
+            print("You grab the key and unlock the door, you are now in the next room")
+            location = "room_2"
+          
+    if location == "room_2":
+      #display text
+      print()
+      print("You are now in a slighly larger room that contains the prison cells.")
+      print("Theres a bookshelf on the right wall")
+      print("On the left wall there seems to be random scratches")
+      print("Choose one of the following actions:")
+      print("[1] Inspect the bookshelf")
+      print("[2] Inspect the scratches")
+
+      choice3 = int(input("Choice: "))
+      if choice3 == 1:
+        print()
+        print("You find 2 weird looking books")
+        print("Choose one of the following actions:")
+        print("[1] Look at the red book")
+        print("[2] Look at the blue book")
+
+        choice4 = int(input("Choice: "))
+        if choice4 == 1 or choice4 == 2:
+          print()
+          print("Seems as if theres nothing in the book.")
+          print("You check the other book and there is also nothing.")
+          print("You resort to checking the scratches.")
+          print("There are 5 scratches of 1, 3 scratches of 2, 9 scratches of 3 and 1 scratch of 4")
+          print("You go up to the door and try to put in a code")
+          code = int(input("What numbers do you try to put in?: "))
+
+      if choice3 == 2:
+        print()
+        print("There are 5 scratches of 1, 3 scratches of 2, 9 scratches of 3 and 1 scratch of 4")
+        print("You go up to the door and try to put in a code")
+        code = int(input("What numbers do you try to put in?: "))
+
+      if code == 5391:
+        location = "escaped"
+      else:
+        location = "busted"
+
+    if location == "busted":
+        print()
+        print("The guards got alerted! Better Luck next time!")
+        break
+
+    if location == "escaped":
+        print()
+        print("You escaped!")
+        break
+
