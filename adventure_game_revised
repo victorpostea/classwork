@@ -69,6 +69,12 @@ while True:
             print()
             print("You grab the key and unlock the door, you are now in the next room")
             location = "room_2"
+        
+        if choice == 3:
+          print()
+          print("Today is marked as ""execution"" and looking at the clock you realize you have an hour left, other than that there's nothing intresting.")
+          print("You resort to the last option and inspect the bones.")
+
           
     if location == "room_2":
       #display text
@@ -118,4 +124,3 @@ while True:
         print()
         print("You escaped!")
         break
-
