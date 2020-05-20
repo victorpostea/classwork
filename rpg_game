@@ -1,4 +1,5 @@
 import os
+import random
 
 
 overworld_map = [
@@ -17,15 +18,28 @@ level1 = [
     list("........D...........")
 ]
 
+Enemies = ['Goblin', 'Archer', 'Knight',]
+OP_Enemies = ['Shadow Knight', 'Enchanted Archer', 'Hobgoblin',]
+
+enemy_health = 30
+enemy_attack = 15
+
+op_enemy_health = 80
+op_enemy_attack = 30
+
+rounds = 0
 key = 'false'
 kills = 0
-gold = 0
-goblin_health = 10
-super_goblin_health = 15
-health = 100
+gold = 0 
+base_damage = 10
+Enemy_health = 30
+Overpowered_Enemy_health = 80
+health = 75
 reset = "yes"
 x = 0
 y = 0
+sword_upgrade = "false"
+health_upgrade = "false"
 
 location = "overworld"
 
@@ -33,19 +47,20 @@ location = "overworld"
 print("Going back to the overworld will fill your healthbar. Good luck.")
 while True:
     if y < 0:
-        print("You cant't leave the map!")
-        y += 1
+      print("You cant't leave the map!")
+    y += 1
     if x < 0:
-        print("You can't leave the map!")
-        x += 1
+      print("You can't leave the map!")
+    x += 1
     if y == 5 and choice == 'S':
-        print("You can't leave the map!")
-        y -= 1
+      print("You can't leave the map!")
+    y -= 1
     if x == 20 and choice == 'D':
-        print("You can't leave the map!")
-        x -= 1
+      print("You can't leave the map!")
+    x -= 1
     if location == "overworld":
         level1[y][x] = "P"
+
 
         print("You are in the overworld!")
         print(f"You have {gold} gold and {kills} kills")
@@ -62,6 +77,12 @@ while True:
             print()
 
         print(f"You are at location ({x}, {y})\n")
+
+        if health_upgrade == "true":
+          health = 150
+        if sword_upgrade == "true":
+          base_damage = 30
+        
 
         # menu options John
 
@@ -122,6 +143,8 @@ while True:
         # display info / menu options
         print("You enter the store")
         print("Key = 30 GOLD (to buy press [1])")
+        print("Health Upgrade = 9 GOLD (to buy press [2]")
+        print("New Sword = 12 GOLD (To buy press [3]")
         print("Press ENTER to go back")
         print(f"You have {gold} gold! If you don't have enough your purchase won't go through!")
         choice_store = input("")
@@ -132,12 +155,27 @@ while True:
               print("Congrats you got the key!")
             else:
                 print("ERROR")
+        elif choice_store == "2":
+          if gold >= 9:
+            health_upgrade = "true"
+            gold = gold - 9
+            print("Congrats on the extra health!")
+          else:
+            print("ERROR")
+        elif choice_store == "3":
+          if gold >= 12:
+            sword_upgrade = "true"
+            gold = gold - 12
+            print("Congrats on the sword upgrade!")
+          else:
+            print("ERROR")
         else:
           location = "overworld"
+            
     elif location == "john":
         # display info / menu options
         print("You initiate a conversation with John!")
-        print("Hey fellow traveller. I assume you don't know what you're doing here! It's fine. Neither did I when I was chosen. They wipe your memory before sending you in. I'm sure you won't remember anything. Anyways, your final goal is to get the key from the shop and unlock the big gate using it [B on the map]. You must first go through the dimensional door and fight the goblins for their gold. Best of luck traveller!")
+        print("What's up! Oh? You're confused about what to do? Well well. You're in luck! I've been here for over 10 years. You have to go to the shadow realm and steal the monsters gold! You won't be able to fight the strong ones until you upgrade your sword at the store! When you manage to get 30 gold go buy the key to escape!")
         print("Press ENTER to go back")
         choice_john = input("")
         if choice_john == "":
@@ -147,23 +185,36 @@ while True:
 
     elif location == "shadow_realm":
         
+        if y < 0:
+          print("You cant't leave the map!")
+          y += 1
+        if x < 0:
+          print("You can't leave the map!")
+          x += 1
+        if y == 5 and choice == 'S':
+          print("You can't leave the map!")
+          y -= 1
+        if x == 20 and choice == 'D':
+          print("You can't leave the map!")
+          x -= 1
+    
         if reset == "yes":
             x = 0
             y = 0
             reset = "no"
 
         shadow_realm_map = [
-        list("....G..............G"),
+        list("....E..............E"),
         list("...................."),
-        list("............G......."),
+        list("............E......."),
         list("...O.............O.."),
         list("........O...........")
         ]
 
         level2 = [
-        list("....G..............G"),
+        list("....E..............E"),
         list("...................."),
-        list("............G......."),
+        list("............E......."),
         list("...O.............O.."),
         list("........O...........")
         ]
@@ -172,7 +223,7 @@ while True:
 
         print("You are in the shadow realm!")
         print(f"You currently have {gold} gold and {kills} kills.")
-        print("LEGEND: G = Goblin (Drop 3 gold), O = Super Goblin (Drop 10 gold), NOTE: After every fight/run away you will go back to overworld with full health")
+        print("LEGEND: E = Enemy (Drop 3 gold), O = Overpowered Enemy (Drop 10 gold), NOTE: After every fight/run away you will go back to overworld with full health")
 
         # print out the map
         for row in level2:
@@ -182,19 +233,19 @@ while True:
 
         print(f"You are at location ({x}, {y})\n")
 
-        # menu options goblin
-        if shadow_realm_map[y][x] == "G":  # at a goblin
-            print("You see a Goblin!")
-            print("[1] Fight the Goblin.")
+        # menu options Enemy
+        if shadow_realm_map[y][x] == "E":  # at a Enemy
+            print("You see a Enemy!")
+            print("[1] Fight the Enemy.")
         print()
 
-        # menu options super goblin
-        if shadow_realm_map[y][x] == "O":  # at a super goblin
-            print("You see a Super Goblin!")
-            print("[1] Fight the Super Goblin.")
+        # menu options Overpowered Enemy
+        if shadow_realm_map[y][x] == "O":  # at a Overpowered Enemy
+            print("You see a Overpowered Enemy!")
+            print("[1] Fight the Overpowered Enemy.")
         print()
 
-        # menu options super goblin
+        # menu options door
         if shadow_realm_map[y][x] == "D":  # at a door
             print("You see a door!")
             print("[1] Go through it.")
@@ -221,122 +272,75 @@ while True:
             x += 1
         elif choice == "A":
             x -= 1
-        elif shadow_realm_map[y][x] == "G" and choice == "1":
-            location = "battle"
-            health = health - 10
-            print()
-            print("You initiated a fight!")
-            print(f"Goblin = {goblin_health} health! You = {health + 10} health!")
-            print(f"Goblin attacks! He does 10 damage! You now have {health} health!")
-            print("What do you do!?")
-            print("[1] Swing sword")
-            print("[2] Run away")
-            choice_fight = int(input("choice:"))
-            if choice_fight == 1:
-                goblin_health -= 5
-                health = health - 10
-                print(f"You attack! You do 5 damage! He is now left with {goblin_health} health!")
-                print()
-                print(f"Goblin = {goblin_health} health! You = {health + 10} health!")
-                print(f"Goblin attacks! He does 10 damage! You now have {health} health!")
-                print("What do you do!?")
-                print("[1] Swing sword")
-                print("[2] Run away")
-                choice_fight = int(input("choice:"))
-                if choice_fight == 1:
-                    print("You win!, +3 Gold!")
-                    location = "overworld"
-                    x = 0
-                    y = 0
-                    gold += 3
-                    kills += 1
-                    health = 100
-                    goblin_health = 10
-                    reset = 'yes'
-                if choice_fight == 2:
-                    print("You safetly escaped!")
-                    location = "overworld"
-                    x = 0
-                    y = 0
-                    health = 100
-                    goblin_health = 10
-                    reset = 'yes'
-            elif choice_fight == 2:
-                print("You safetly escaped!")
-                location = "overworld"
-                x = 0
-                y = 0
-                health = 100
-                goblin_health = 10
-                reset = 'yes'
-
+        elif shadow_realm_map[y][x] == "E" and choice == "1":
+          location = "normal_fight"
+          opponent = Enemies[random.randrange(0,2)]
         elif shadow_realm_map[y][x] == "O" and choice == "1":
-            location = "battle"
-            health = health - 10
-            print()
-            print("You initiated a fight!")
-            print(f"Goblin = {super_goblin_health} health! You = {health + 10} health!")
-            print(f"Goblin attacks! He does 10 damage! You now have {health} health!")
-            print("What do you do!?")
-            print("[1] Swing sword")
-            print("[2] Run away")
-            choice_fight = int(input("choice:"))
-            if choice_fight == 1:
-                super_goblin_health -= 5
-                health = health - 10
-                print(f"You attack! You do 5 damage! He is now left with {super_goblin_health} health!")
-                print()
-                print(f"Goblin = {super_goblin_health} health! You = {health + 10} health!")
-                print(f"Goblin attacks! He does 10 damage! You now have {health} health!")
-                print("What do you do!?")
-                print("[1] Swing sword")
-                print("[2] Run away")
-                choice_fight = int(input("choice:"))
-                if choice_fight == 1:
-                    super_goblin_health -= 5
-                    health = health - 10
-                    print(f"You attack! You do 5 damage! He is now left with {super_goblin_health} health!")
-                    print()
-                    print(f"Goblin = {super_goblin_health} health! You = {health + 10} health!")
-                    print(f"Goblin attacks! He does 10 damage! You now have {health} health!")
-                    print("What do you do!?")
-                    print("[1] Swing sword")
-                    print("[2] Run away")
-                    choice_fight = int(input("choice:"))
-                    if choice_fight == 1:
-                        print("You win!, +10 Gold!")
-                        location = "overworld"
-                        health = 100
-                        super_goblin_health = 15
-                        x = 0
-                        y = 0
-                        gold += 10
-                        kills += 1
-                        reset = 'yes'
-                    elif choice_fight == 2:
-                        print("You safetly escaped!")
-                        location = "overworld"
-                        health = 100
-                        super_goblin_health = 15
-                        x = 0
-                        y = 0
-                        reset = 'yes'
-                elif choice_fight == 2:
-                    print("You safetly escaped!")
-                    location = "overworld"
-                    health = 100
-                    super_goblin_health = 15
-                    x = 0
-                    y = 0
-                    reset = 'yes'
-            elif choice_fight == 2:
-                print("You safetly escaped!")
-                location = "overworld"
-                health = 100
-                super_goblin_health = 15
-                x = 0
-                y = 0
-                reset = 'yes'
+          location = "strong_fight"
+          opponent = OP_Enemies[random.randrange(0,2)]
+    
+    if location == "normal_fight":
+      print()
+      print(f"You are fighting a {opponent}")
+      print("Choose an option:")
+      print("[1] Attack")
+      print("[2] Run away!")
+      print(f"You have {health} health and your opponent has {enemy_health} health.")
+      if rounds >= 1:
+        print(f"You attack {opponent} for {damage} hp.")
+        print(f"{opponent} damages you for {damage} hp.")
+      fight_choice = input()
+      if fight_choice == "1":
+        if enemy_health > 0:
+          damage = random.randrange(base_damage, base_damage + 10)
+          enemy_health -= damage
+          rounds += 1
+          print(f"You attack {opponent} for {damage} hp.")
+        
+        print()
+        if enemy_health <= 0:
+            print(f"You defeated {opponent}.")
+            location = "overworld"
+            reset = "yes"
+            rounds = 0
+            y = 0
+            x = 0
+            gold += 3
+            kills += 1
+            enemy_health = 30
+            if health_upgrade == "true":
+              health = 150
+            else:
+              health = 75
+            continue
+        
+        if health <= 0:
+          print("You died!")
+          location = "overworld"
+          reset = "yes"
+          y = 0
+          x = 0
+          rounds = 0
+          if health_upgrade == "true":
+            health = 150
+          else:
+            health = 75
+          continue
+
+        # Enemy attack
+        damage = random.randrange(5, 10)
+        health -= damage
+
+
+      elif fight_choice == "2":
+          reset = "yes"
+          x = 0
+          y = 0
+          rounds = 0
+          location = "overworld"
+          continue
+
+
 
     
     
