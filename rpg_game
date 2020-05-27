@@ -322,6 +322,7 @@ while True:
           y = 0
           x = 0
           rounds = 0
+          enemy_health = 30
           if health_upgrade == "true":
             health = 150
           else:
@@ -352,15 +353,18 @@ while True:
         print(f"{opponent} damages you for {op_enemy_damage} hp.")
       fight_choice = input()
       if fight_choice == "1":
-        if op_enemy_health > 0:
+        if op_enemy_health > 0 and health > 0:
           damage = random.randrange(base_damage, base_damage + 10)
-          op_enemy_damage = random.randrange(op_enemy_damage, op_enemy_damage + 10)
+          op_enemy_damage = random.randrange(op_enemy_attack, op_enemy_attack + 10)
           op_enemy_health -= damage
           rounds += 1
           print(f"You attack {opponent} for {damage} hp.")
+
+        # Enemy attack
+        health -= op_enemy_damage
         
         print()
-        if op_enemy_health <= 0:
+      if op_enemy_health <= 0:
             print(f"You defeated {opponent}.")
             location = "overworld"
             reset = "yes"
@@ -376,21 +380,20 @@ while True:
               health = 75
             continue
         
-        if health <= 0:
+      if health <= 0:
           print("You died!")
           location = "overworld"
           reset = "yes"
           y = 0
           x = 0
           rounds = 0
+          op_enemy_health = 80
           if health_upgrade == "true":
             health = 150
           else:
             health = 75
           continue
 
-        # Enemy attack
-        health -= op_enemy_damage
 
 
       elif fight_choice == "2":
@@ -406,3 +409,4 @@ while True:
     
     
     os.system("clear")
+    
