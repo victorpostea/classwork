@@ -1,0 +1,86 @@
+import random
+
+points = 0
+rounds = 0
+good_double_roll = 0
+double_roll_success = 0
+
+min = 1
+max = 6
+
+while True:
+  print(f"You have {points} points")
+  print("Choose one of the following:")
+  print("[1] Single Roll")
+  print("[2] Double Roll")
+  print("[3] Cash Out")
+  choice = int(input("Choice:"))
+  if choice == 1:
+    yesorno = input("Press ENTER to roll, submit anything else to go back.:")
+    if yesorno == "":
+      roll1 = random.randint(min,max)
+      print(f"You rolled {roll1}")
+      if roll1 == 1:
+        points += 10
+        rounds += 1
+        print("You gained 10 points!")
+      elif roll1 == 2:
+        points += 20
+        rounds += 1
+        print("You gained 20 points!")
+      elif roll1 == 3:
+        points += 30
+        rounds += 1
+        print("You gained 30 points!")
+      elif roll1 == 4:
+        points -= 10
+        rounds += 1
+        print("You lost 10 points!")
+      elif roll1 == 5:
+        points -= 20
+        rounds += 1
+        print("You lost 20 points!")
+      elif roll1 == 6:
+        points -= 30
+        rounds += 1
+        print("You lost 30 points!")
+    else:
+      continue
+  if choice == 2:
+    yesorno2 = input("Press ENTER to roll, submit anything else to go back.:")
+    if yesorno2 == "":
+      roll1 = random.randint(min,max)
+      roll2 = random.randint(min,max)
+      print(f"Roll 1 is {roll1}")
+      print(f"Roll 2 is {roll2}")
+      if roll1 > roll2:
+        points -= 65
+        rounds += 1
+        print("You lost 65 points!")
+      elif roll2 > roll1:
+        points += 50
+        rounds += 1
+        double_roll_success += 1
+        print("You gained 50 points!")
+      elif roll2 == roll1:
+        points += 100
+        rounds += 1
+        double_roll_success += 1
+        good_double_roll += 1
+        print("You gained 100 points!")
+    else:
+      continue
+  if choice == 3:
+    yesorno = input("Press ENTER to CASH OUT, submit anything else to go back.:")
+    if yesorno == "":
+      print(f"You finished with {points} points! You averaged {points / rounds} points per round! You had {double_roll_success} ({good_double_roll} equal) successful rolls!")
+      restart = input("Press ENTER to restart, submit anything else to end game.")
+      if restart == "":
+        points = 0
+        rounds = 0
+        good_double_roll = 0
+        double_roll_success = 0
+      else:
+        break
+    else:
+      continue
