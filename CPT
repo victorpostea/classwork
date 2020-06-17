@@ -71,16 +71,19 @@ while True:
     else:
       continue
   if choice == 3:
-    yesorno = input("Press ENTER to CASH OUT, submit anything else to go back.:")
-    if yesorno == "":
-      print(f"You finished with {points} points! You averaged {points / rounds} points per round! You had {double_roll_success} ({good_double_roll} equal) successful rolls!")
-      restart = input("Press ENTER to restart, submit anything else to end game.")
-      if restart == "":
-        points = 0
-        rounds = 0
-        good_double_roll = 0
-        double_roll_success = 0
+    if points > 0:
+      yesorno = input("Press ENTER to CASH OUT, submit anything else to go back.:")
+      if yesorno == "":
+        print(f"You finished with {points} points! You averaged {points / rounds} points per round! You had {double_roll_success} ({good_double_roll} equal) successful rolls!")
+        restart = input("Press ENTER to restart, submit anything else to end game.")
+        if restart == "":
+          points = 0
+          rounds = 0
+          good_double_roll = 0
+          double_roll_success = 0
+        else:
+          break
       else:
-        break
+        continue
     else:
-      continue
+      print("ERROR 502. You haven't played yet!")
